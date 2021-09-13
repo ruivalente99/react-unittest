@@ -1,45 +1,34 @@
-// import { screen } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
+import { screen,render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Counter from ".";
-
-/* import Enzyme, { shallow, render, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() }) */
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
-
-// tslint:disable-next-line:no-any
-enzyme.configure({ adapter: new Adapter() });
 
 describe("Testing Counter Component", () => {
   test("When we start the app, the counter should have the value of 0", () => {
     // Given ...
     // ... a 'Counter' on the app startup
-    const wrapper = mount(<Counter />);
-    
+    const wrapper = render(<Counter />);
+
     // When ...
     // ... we fetch all the Counters
-  
+    const counterTitle = wrapper.container.querySelector("#counter");
+
     // Then ...
     // ... we expect it to exist
     // ... we expect it only to have one
     // ... we expect it to have the value '0'
-    
-    expect(wrapper.instance().state.counter).toBe(0)
-    //expect(counterTitle).toHaveTextContent("1");
+    expect(counterTitle).toHaveTextContent("0");
   });
 
   test("When we start the app,the title should contain the class counter__title", () => {
     // Given ...
-    // ... a 'Counter' on the app startup
+    // ... a 'Counter' on the app startupcl
     const result = render(<Counter />);
 
     // When ...
     // ... we fetch all the Counters
-    const counterTitle = result.container.querySelector('#counter');
+    const counterTitle = result.container.querySelector("#counter");
 
-     // Then ...
+    // Then ...
     // ... we expect it to be the type of counter__title
     expect(counterTitle).toHaveClass("counter__title");
   });
