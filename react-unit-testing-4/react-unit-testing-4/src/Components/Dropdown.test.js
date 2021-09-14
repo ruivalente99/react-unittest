@@ -61,8 +61,19 @@ describe("Dropdown", () => {
   it("Should show the select option and close dropdown", () => {
     const onSelect = jest.fn();
     render(<Dropdown title={title} options={options} onSelect={onSelect} />);
+
+    /*
+     * Then ...
+     */
+
+    /*
+     * When we click in the button
+     */
     const DropdownButton = screen.getByRole("button");
     userEvent.click(DropdownButton);
+    /*
+     * Then the options should appear and ...
+     */
     expect(
       screen.getByRole("menuitem", { name: options[0] })
     ).toBeInTheDocument();
@@ -75,9 +86,16 @@ describe("Dropdown", () => {
     expect(
       screen.getByRole("menuitem", { name: options[3] })
     ).toBeInTheDocument();
+    /*
+     * When we click on one option
+     */
     const MenuItem = screen.getByRole("menuitem", { name: options[0] });
     userEvent.click(MenuItem);
+    /*
+     * Then the options should disappear
+     */
     expect(onSelect).toHaveBeenCalledWith(options[0]);
+    expect(screen.queryByText([options[0]])).not.toBeInTheDocument();
     expect(screen.queryByText([options[1]])).not.toBeInTheDocument();
     expect(screen.queryByText([options[2]])).not.toBeInTheDocument();
   });
