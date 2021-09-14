@@ -8,7 +8,7 @@ function Dropdown({ options, title, onSelect }) {
   };
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>{title}</button>
+      <button role="button" onClick={() => setIsOpen(true)}>{title}</button>
       <div>
       {isOpen && (
         <ul role="menu">
